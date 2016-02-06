@@ -1,0 +1,6 @@
+.DS_Store
+data
+lib
+*.pyc
+*.class
+*.pyc
