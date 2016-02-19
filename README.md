@@ -8,9 +8,9 @@ To get started, run setup.sh to download initial word embeddings and PPDB traini
 
 The code is separated into 3 parts:
 
-similarity: contains code for training models on the SICK similarity and entailment code
-main: contains code for training models on PPDB data as well as various utilities
-sentiment: contains code for training sentiment models.
+* similarity: contains code for training models on the SICK similarity and entailment tasks
+* main: contains code for training models on PPDB data as well as various utilities
+* sentiment: contains code for training sentiment models.
 
 If you use our code for your work please cite:
 

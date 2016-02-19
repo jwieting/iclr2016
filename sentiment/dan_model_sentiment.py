@@ -79,14 +79,22 @@ class dan_model_sentiment(object):
         l_mask = lasagne.layers.InputLayer(shape=(None, None))
         l_emb = lasagne.layers.EmbeddingLayer(l_in, input_size=We.get_value().shape[0], output_size=We.get_value().shape[1], W=We)
         l_average = lasagne_average_layer([l_emb, l_mask])
-        l_out = lasagne.layers.DenseLayer(l_average, params.layersize, nonlinearity=params.nonlinearity)
+        l_1 = lasagne.layers.DenseLayer(l_average, params.hiddensize, nonlinearity=params.nonlinearity)
+        l_2 = lasagne.layers.DenseLayer(l_1, params.hiddensize, nonlinearity=params.nonlinearity)
+        l_3 = lasagne.layers.DenseLayer(l_2, params.hiddensize, nonlinearity=params.nonlinearity)
+        l_4 = lasagne.layers.DenseLayer(l_3, params.hiddensize, nonlinearity=params.nonlinearity)
 
-        if params.traintype == "reg" or params.traintype == "rep":
-            l_in = lasagne.layers.InputLayer((None, None))
-            l_mask = lasagne.layers.InputLayer(shape=(None, None))
-            l_emb = lasagne.layers.EmbeddingLayer(l_in, input_size=We.get_value().shape[0], output_size=We.get_value().shape[1], W=We)
-            l_average = lasagne_average_layer([l_emb, l_mask])
-            l_out = lasagne.layers.DenseLayer(l_average, params.layersize, nonlinearity=params.nonlinearity,W=W, b=b)
+        l_out = None
+        if params.numlayers == 1:
+            l_out = l_1
+        elif params.numlayers == 2:
+            l_out = l_2
+        elif params.numlayers == 3:
+            l_out = l_3
+        elif params.numlayers == 4:
+            l_out = l_4
+        else:
+            raise ValueError('Only 1-4 layers are supported currently.')
 
         embg = lasagne.layers.get_output(l_out, {l_in:g1batchindices, l_mask:g1mask})
 

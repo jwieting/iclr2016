@@ -30,6 +30,7 @@ unzip stanford-corenlp-full-2014-08-27.zip
 unzip commons-io-2.4-bin.zip
 rm *.zip
 
+#preprocess
 cd ../preprocess
 javac -classpath ../lib/commons-io-2.4/commons-io-2.4.jar:../lib/stanford-corenlp-full-2014-08-27/stanford-corenlp-3.4.1.jar:../lib/stanford-corenlp-full-2014-08-27/stanford-corenlp-3.4.1-models.jar Preprocess.java
 java -classpath ../lib/commons-io-2.4/commons-io-2.4.jar:../lib/stanford-corenlp-full-2014-08-27/stanford-corenlp-3.4.1.jar:../lib/stanford-corenlp-full-2014-08-27/stanford-corenlp-3.4.1-models.jar:. Preprocess

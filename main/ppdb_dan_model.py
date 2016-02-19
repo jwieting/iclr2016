@@ -22,9 +22,9 @@ class ppdb_dan_model(object):
         l_emb = lasagne.layers.EmbeddingLayer(l_in, input_size=We.get_value().shape[0], output_size=We.get_value().shape[1], W=We)
         l_average = lasagne_average_layer([l_emb, l_mask])
         l_1 = lasagne.layers.DenseLayer(l_average, params.hiddensize, W=lasagne.init.Normal(0.1), b=lasagne.init.Constant(0.), nonlinearity=params.nonlinearity)
-        l_2 = lasagne.layers.DenseLayer(l_1, params.hiddensize, W=lasagne.init.Normal(0.1), b=lasagne.init.Constant(0.), nonlinearity=params.nonlinearity)
-        l_3 = lasagne.layers.DenseLayer(l_2, params.hiddensize, W=lasagne.init.Normal(0.1), b=lasagne.init.Constant(0.), nonlinearity=params.nonlinearity)
-        l_4 = lasagne.layers.DenseLayer(l_2, params.hiddensize, W=lasagne.init.Normal(0.1), b=lasagne.init.Constant(0.), nonlinearity=params.nonlinearity)
+        l_2 = lasagne.layers.DenseLayer(l_1, params.hiddensize, nonlinearity=params.nonlinearity)
+        l_3 = lasagne.layers.DenseLayer(l_2, params.hiddensize, nonlinearity=params.nonlinearity)
+        l_4 = lasagne.layers.DenseLayer(l_3, params.hiddensize, nonlinearity=params.nonlinearity)
 
         l_end = None
         if params.numlayers == 1:
